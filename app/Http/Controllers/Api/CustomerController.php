@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\Api;
 
+use App\Models\Customer;
+
 class CustomerController extends Controller
 {
     /**
@@ -11,13 +13,21 @@ class CustomerController extends Controller
      *     tags={"customer"},
      *     @OA\Response(
      *         response=200,
-     *         description="customers"
-     *     ),
-     *     @OA\Response(response=404, ref="#/components/responses/404")
+     *         description="array of customer",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 type="array",
+     *                 @OA\Items(
+     *                     ref="#/components/schemas/customer"
+     *                 )
+     *             )
+     *         )
+     *     )
      * )
      */
-    public function GetCustomers()
+    public function getCustomers()
     {
-        
+        return Customer::all();
     }
 }

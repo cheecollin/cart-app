@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\Api;
 
+use App\Models\JobAd;
+
 class JobAdController extends Controller
 {
     /**
@@ -8,16 +10,24 @@ class JobAdController extends Controller
      *     path="/job-ads",
      *     description="get all job ads",
      *     operationId="getJobAds",
-     *     tags={"job-ads"},
+     *     tags={"job-ad"},
      *     @OA\Response(
      *         response=200,
-     *         description="job_ads"
-     *     ),
-     *     @OA\Response(response=404, ref="#/components/responses/404")
+     *         description="array of job ad",
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 type="array",
+     *                 @OA\Items(
+     *                     ref="#/components/schemas/job_ad"
+     *                 )
+     *             )
+     *         )
+     *     )
      * )
      */
-    public function GetJobAds()
+    public function getJobAds()
     {
-        
+        return JobAd::all();
     }
 }

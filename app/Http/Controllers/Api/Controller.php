@@ -35,6 +35,25 @@ use App\Http\Controllers\Controller as BaseController;
  *                     )
  *                 )
  *             )
+ *         ),
+ *         @OA\Response(
+ *             response=400,
+ *             description="Bad Request",
+ *             @OA\MediaType(
+ *                 mediaType="application/json",
+ *                 @OA\Schema(
+ *                     schema="400_error",
+ *                     @OA\Property(
+ *                             property="code",
+ *                             type="integer",
+ *                             format="int32"
+ *                     ),
+ *                     @OA\Property(
+ *                         property="message",
+ *                         type="string"
+ *                     )
+ *                 )
+ *             )
  *         )
  *     )
  * )

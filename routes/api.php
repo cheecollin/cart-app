@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Customer APIs
+Route::get('customers', 'Api\CustomerController@getCustomers');
+
+// Job Ad APIs
+Route::get('job-ads', 'Api\JobAdController@getJobAds');
+
+// Order APIs
+Route::post('order/calculate', 'Api\OrderController@calculateTotalPrice');
+Route::post('orders', 'Api\OrderController@createOrder');
