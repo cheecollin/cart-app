@@ -8,7 +8,7 @@ return [
         |--------------------------------------------------------------------------
         */
 
-        'title' => 'L5 Swagger UI',
+        'title' => 'Swagger UI',
     ],
 
     'routes' => [
@@ -222,6 +222,6 @@ return [
     |--------------------------------------------------------------------------
      */
     'constants' => [
-        'L5_SWAGGER_CONST_HOST' => env('L5_SWAGGER_CONST_HOST', 'http://my-default-host.com'),
+        'API_URL' => '/api/',
     ],
 ];
