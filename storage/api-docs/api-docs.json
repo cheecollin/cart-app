@@ -1,0 +1,290 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Job Ads Checkout API",
+        "contact": {
+            "name": "Chee Collin",
+            "email": "chee_collin88@yahoo.com"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "/api/",
+            "description": "API server"
+        }
+    ],
+    "paths": {
+        "/customers": {
+            "get": {
+                "tags": [
+                    "customer"
+                ],
+                "description": "get all customers",
+                "operationId": "getCustomers",
+                "responses": {
+                    "200": {
+                        "description": "array of customer",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/customer"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/job-ads": {
+            "get": {
+                "tags": [
+                    "job-ad"
+                ],
+                "description": "get all job ads",
+                "operationId": "getJobAds",
+                "responses": {
+                    "200": {
+                        "description": "array of job ad",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/job_ad"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/order/calculate": {
+            "post": {
+                "tags": [
+                    "order"
+                ],
+                "description": "calculate the total price for the job ads",
+                "operationId": "calculateTotalPrice",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "schema": "order",
+                                "properties": {
+                                    "customer_id": {
+                                        "type": "integer"
+                                    },
+                                    "job_ads": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/job_ads_order"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "price summary",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "schema": "price_summary",
+                                    "properties": {
+                                        "customer_id": {
+                                            "type": "integer"
+                                        },
+                                        "job_ads": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/order_line"
+                                            }
+                                        },
+                                        "total_price": {
+                                            "type": "number",
+                                            "format": "currency"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    }
+                }
+            }
+        },
+        "/orders/": {
+            "post": {
+                "tags": [
+                    "order"
+                ],
+                "description": "create order",
+                "operationId": "createOrder",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "schema": "order",
+                                "properties": {
+                                    "customer_id": {
+                                        "type": "integer"
+                                    },
+                                    "job_ads": {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/job_ads_order"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "order_created"
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "customer": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "job_ad": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "currency"
+                    }
+                },
+                "type": "object"
+            },
+            "job_ads_order": {
+                "properties": {
+                    "job_ad_id": {
+                        "type": "integer"
+                    },
+                    "quantity": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "order": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "customer_id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "order_line": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "order_id": {
+                        "type": "integer"
+                    },
+                    "job_ad_id": {
+                        "type": "integer"
+                    },
+                    "quantity": {
+                        "type": "integer"
+                    },
+                    "discount": {
+                        "type": "number",
+                        "format": "currency"
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "currency"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "responses": {
+            "404": {
+                "description": "Not Found",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "schema": "404_error",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Bad Request",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "schema": "400_error",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "format": "int32"
+                                },
+                                "message": {
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
