@@ -1,0 +1,62 @@
+<link rel="stylesheet"
+	ng-href="./components/order/order.css?t={{ $root.config.version }}" />
+
+<div class="panel select-customer">
+	<div class="row">
+		<h4 class="control-label col-xs-5 col-md-2">Select Customer :</h4>
+		<div class="col-xs-7 col-md-10">
+			<select class="form-control" ng-change="$ctrl.calculateTotalPrice()"
+				ng-model="$ctrl.inputs.customer_id"
+				ng-options="customer.id as customer.name for customer in $ctrl.customers"></select>
+		</div>
+	</div>
+</div>
+
+<div class="panel job-ads">
+	<div class="row" ng-repeat="job_ad in $ctrl.job_ads">
+		<div class="col-xs-4 col-md-7 job-ads-desc">
+			<div class="col-xs-12 col-md-8">
+				<b>{{ job_ad.description }}</b>
+			</div>
+			<div class="col-xs-12 col-md-4">{{ job_ad.price | currency : '$' : 2}}</div>
+		</div>
+
+		<div class="col-xs-5 quantity-selector">
+			<button class="btn btn-default"
+				ng-disabled="$ctrl.inputs.quantity[job_ad.id] == 0"
+				ng-click="$ctrl.decreaseQty(job_ad.id);">-</button>
+			<input class="quantity" type="number"
+				ng-change="$ctrl.calculateTotalPrice()"
+				ng-model="$ctrl.inputs.quantity[job_ad.id]" />
+			<button class="btn btn-default"
+				ng-click="$ctrl.increaseQty(job_ad.id);">+</button>
+		</div>
+		<div class="col-xs-3">
+			<del class="text-muted pull-left"
+				ng-if="$ctrl.price_summary.job_ads[job_ad.id].discount > 0">
+				{{ ($ctrl.price_summary.job_ads[job_ad.id].price +
+				$ctrl.price_summary.job_ads[job_ad.id].discount) | currency : '$' :	2 }}
+			</del>
+			<div class="pull-left"
+				ng-if="$ctrl.price_summary.job_ads[job_ad.id].price > 0">
+				{{ $ctrl.price_summary.job_ads[job_ad.id].price | currency : '$' : 2 }}
+			</div>
+		</div>
+	</div>
+</div>
+<div class="panel checkout">
+	<div class="row">
+		<div class="col-xs-8">
+			<div ng-if="$ctrl.price_summary.total_price > 0" class="pull-right">
+				<b>Total Price:</b> {{ $ctrl.price_summary.total_price | currency :	'$' : 2 }}
+			</div>
+		</div>
+		<div class="col-xs-4">
+			<button class="btn btn-primary pull-right"
+				ng-disabled="$ctrl.price_summary.total_price == 0 || $ctrl.calculating"
+				ng-click="$ctrl.checkout();">
+				<b>Checkout</b>
+			</button>
+		</div>
+	</div>
+</div>

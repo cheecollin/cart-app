@@ -1,0 +1,26 @@
+{
+  "name": "job-ads-checkout-fronted",
+  "authors": [
+    "chee_collin88@yahoo.com"
+  ],
+  "description": "Job Ads Checkout Fronted",
+  "main": "app.js",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.7.8",
+    "bootstrap": "^3.1.1",
+    "requirejs": "^2.3.5",
+    "angular-route": "1.7.8",
+    "swagger-js": "^3.8.25",
+    "angular-bootstrap": "^2.5.0",
+    "angular-sanitize": "^1.7.8"
+  }
+}

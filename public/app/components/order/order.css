@@ -1,0 +1,72 @@
+.select-customer {
+	padding: 5px;
+}
+
+.select-customer select {
+	width: 150px;
+	height: auto;
+	margin-top: 5px;
+	padding: 6px;
+}
+
+.job-ads .row, .checkout .row {
+	display: flex;
+	align-items: center;
+	margin-top: 5px;
+	border-bottom: 1px solid #f1f1f1;
+	padding-bottom: 5px;
+}
+
+.job-ads-desc div {
+	padding: 0;
+}
+
+.job-ads del {
+	padding-right: 10px;
+}
+
+.checkout button {
+	margin: 10px;
+}
+
+.quantity-selector {
+	padding: 10px;
+}
+
+.quantity-selector input[type="number"]::-webkit-outer-spin-button,
+	.quantity-selector input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.quantity-selector input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+.quantity-selector button.btn-default {
+	width: 35px;
+}
+
+.quantity-selector .quantity {
+	width: 35px;
+	display: inline-block;
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	border: 1px solid transparent;
+	border-top-color: transparent;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	border-left-color: transparent;
+	padding: 6px;
+	font-size: 14px;
+	line-height: 1.42857143;
+	border-radius: 4px;
+}
+
+.text { //
+	margin: 10px;
+	padding: 6px;
+}

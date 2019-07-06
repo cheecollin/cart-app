@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <base href="/app/" />
+        <title>Job Ads Checkout</title>
+        <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/css/app.css?t=20190707" />
+    </head>
+    <body>
+        <header></header>
+
+        <spinner loading="loading"></spinner>
+        
+        <div class="container" ng-view ></div>
+        
+        <script type="text/javascript">
+            // global config for frontend
+            var config = {
+              version : '20190707'
+            };
+                
+        </script>
+        
+        <script data-main="require-main.js" src="lib/requirejs/require.js">
+        </script>
+    </body>
+</html>
