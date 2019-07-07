@@ -22,5 +22,8 @@
     "swagger-js": "^3.8.25",
     "angular-bootstrap": "^2.5.0",
     "angular-sanitize": "^1.7.8"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.7.8"
   }
 }
