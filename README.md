@@ -1,6 +1,6 @@
-# Job Ads Checkout
+# Cart App
 
-Application for Job Ads checkout with custom pricing for different customers.
+Application for ordering with custom pricing for different customers.
 
 ## Technical Overview
 Backend APIs using:
